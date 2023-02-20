@@ -26,6 +26,13 @@ namespace Location_Locator.Services.LocationService
                 return Map(response, ipAddress);
             }
 
+
+            var locationModel = new Location();
+            locationModel.Errors.Add($"The IP address <{ipAddress}> provided in the request must be public but was of type <{response?.Message}>");
+
+            return locationModel;
+        }
+
         private Location Map(LocationResponse response, IPAddress ipAddress)
         {
             return new Location
