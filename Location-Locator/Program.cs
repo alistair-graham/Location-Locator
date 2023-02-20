@@ -1,11 +1,18 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+using Location_Locator.Services.LocationService;
+using Microsoft.AspNetCore.HttpOverrides;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddHttpClient<ILocationService, LocationService>(httpClient =>
+{
+    httpClient.BaseAddress = new Uri("http://ip-api.com/json/");
+});
 
 var app = builder.Build();
 
@@ -23,4 +30,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
 
