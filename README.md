@@ -1,4 +1,4 @@
-# Location-Locator
+# Location Locator
 
 ## Tech Stack
 - ASP.NET Core 7
@@ -21,13 +21,24 @@ An API that extracts the IP address from a request a returns the location (count
 
 Or run it from an IDE. If you run it from an IDE using the development launch profile, it automatically opens the Swagger API specification in your browser. You can manually test the API via Swagger or from a request creator like Postman.
 
-You will not get very far when using this API locally however. This is because the request will be using the localhost/127.0.0.1 IP address which is one of the reserved. The requester's IP address must be public to have its location returned; not reserved or private.
+You will not get very far when using this API locally however. This is because the request will be using the `localhost`/`127.0.0.1` IP address which is a `reserved` address. The requester's IP address must be `public` to have its location returned; not `reserved` or `private`.
 
-## What it does
-
+## Specification
 The GET action `localhost:5071/api/location` returns your location. Here are the following responses given the request:
-- Request sent using a public IP address returns a 200 with a JSON object that contains your country, region and city name.
-- Request sent using a public IP address but forwarded through proxies will behave the same way.
-- Request sent using a reserved IP address returns a 400 with a message detailing the problem.
-- Request sent using a private IP address returns a 400 with a message detailing the problem.
-- Any unexpected and unhandled server exceptions will result in a 500 response with no sensitive information such as stacktrace returned.
+- Request sent using a `public` IP address returns a 200 with a JSON object that contains your country, region and city name.
+- Request sent using a `public` IP address but forwarded through proxies will behave the same way.
+- Request sent using a `reserved` IP address returns a 400 with a message detailing the problem.
+- Request sent using a `private` IP address returns a 400 with a message detailing the problem.
+
+## What else it has
+- Client-side caching. It makes sense to use client-side caching here because only that particular client will be making a request with that request. The duration of the cache is set to 12 hours because 1-2% of IP addresses change locations every day ([source](https://ipinfo.io/blog/how-many-ips-change-geolocation-over-a-year/)). I settled on 12-hour cache duration as these location changes are usually slight and I assume 12-hour old data will not significantly impact the clients.
+- Testing coverage of the API and the IP GeoLocator service integration. To test the API, I used middleware to fake the request's IP address.
+- An unhandled exception will return a 500 response with no sensitive details such as stacktrace returned to the client.
+- Logs errors & warnings where appropriate.
+
+## What I have not done
+- Authentication:  Checking who is sending the request.
+- Authorisation: Checking what actions a requester is allowed to perform.
+- Rate limiting, server-side caching, CORS, status page, timing metrics + alerts, public API documentation, handling headers such as `Accept` etc.
+- Persistent storage: I didn't have enough time for that. It also doesn't make sense for what my service does but I understand that it would be more to showcase how I would approach it.
+- A whole lot of other things...
