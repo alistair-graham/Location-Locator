@@ -23,6 +23,13 @@ public class LocationController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Location>> Get()
     {
+        var requestIPAddress = HttpContext.Connection.RemoteIpAddress;
+
+
+
+        var location = await _locationService.GetFromIPAddress(requestIPAddress);
+
+        return Ok(location);
     }
 }
 
