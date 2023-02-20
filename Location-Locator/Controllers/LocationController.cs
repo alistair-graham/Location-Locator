@@ -26,6 +26,10 @@ public class LocationController : ControllerBase
         var requestIPAddress = HttpContext.Connection.RemoteIpAddress;
 
 
+        if (requestIPAddress == null || string.IsNullOrEmpty(requestIPAddress.ToString()))
+        {
+            return BadRequest("Failed to extract IP Address from the request.");
+        }
 
         var location = await _locationService.GetFromIPAddress(requestIPAddress);
 
