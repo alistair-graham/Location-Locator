@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Net;
 using Location_Locator.Models;
 using LocationAPI.Controllers;
@@ -26,6 +26,7 @@ namespace Location_Locator.Services.LocationService
                 return Map(response, ipAddress);
             }
 
+            _logger.LogWarning("GET request to <{URI}{IP_ADDRESS}> failed to find IP location with message <{MSG}>", _httpClient.BaseAddress, ipAddress, response?.Message);
 
             var locationModel = new Location();
             locationModel.Errors.Add($"The IP address <{ipAddress}> provided in the request must be public but was of type <{response?.Message}>");

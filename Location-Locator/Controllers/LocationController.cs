@@ -25,9 +25,9 @@ public class LocationController : ControllerBase
     {
         var requestIPAddress = HttpContext.Connection.RemoteIpAddress;
 
-
         if (requestIPAddress == null || string.IsNullOrEmpty(requestIPAddress.ToString()))
         {
+            _logger.LogError("Failed to extract IP Address from the request.");
             return BadRequest("Failed to extract IP Address from the request.");
         }
 
@@ -41,4 +41,3 @@ public class LocationController : ControllerBase
         return Ok(location);
     }
 }
-
