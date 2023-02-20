@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>true</WarningsAsErrors>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.3" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Tests\" />
+    <None Remove="Tests\Integration\" />
+    <None Remove="Tests\Unit\" />
+    <None Remove="Tests\Integration\Controllers\" />
+    <None Remove="Tests\Integration\Controllers\LocationControllerTests" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Testing" />
+    <None Remove="Tests\Integration\Helpers\" />
+    <None Remove="Tests\Integration\Services\" />
+    <None Remove="Moq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\" />
+    <Folder Include="Tests\Integration\" />
+    <Folder Include="Tests\Unit\" />
+    <Folder Include="Tests\Integration\Controllers\" />
+    <Folder Include="Tests\Integration\Helpers\" />
+    <Folder Include="Tests\Integration\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Location-Locator\LocationAPI.csproj" />
+  </ItemGroup>
+</Project>
