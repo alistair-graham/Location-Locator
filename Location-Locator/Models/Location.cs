@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text.Json.Serialization;
 
 namespace Location_Locator.Models
@@ -10,6 +10,8 @@ namespace Location_Locator.Models
         public string? RegionName { get; set; }
         public string? City { get; set; }
 
+        [JsonIgnore]
+        public List<string> Errors = new List<string>();
     }
 }
 

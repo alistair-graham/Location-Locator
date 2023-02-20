@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Location_Locator.Models;
 using Location_Locator.Services.LocationService;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +32,11 @@ public class LocationController : ControllerBase
         }
 
         var location = await _locationService.GetFromIPAddress(requestIPAddress);
+
+        if (location.Errors.Any())
+        {
+            return BadRequest(location.Errors);
+        }
 
         return Ok(location);
     }
