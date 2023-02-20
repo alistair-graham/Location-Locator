@@ -39,6 +39,24 @@ namespace LocationAPI.Tests.Tests.Integration.Services
             Assert.Empty(response.Errors);
         }
 
+        [Theory]
+        [InlineData(PRIVATE_IP_ADDRESS, "private range")]
+        [InlineData(RESERVED_IP_ADDRESS, "reserved range")]
+
+        public async void GetFromIpAddress_WithPrivateIP_ReturnsErrorObject(string ipAddress, string errorMessage)
+        {
+            var invalidIPAddress = IPAddress.Parse(ipAddress);
+
+            var response = await _locationService.GetFromIPAddress(invalidIPAddress);
+
+            Assert.NotNull(response);
+            Assert.Null(response.IPAddress);
+            Assert.Null(response.Country);
+            Assert.Null(response.RegionName);
+            Assert.Null(response.City);
+
+            Assert.Equal($"The IP address <{ipAddress}> provided in the request must be public but was of type <{errorMessage}>", response.Errors.Single());
+        }
     }
 }
 
