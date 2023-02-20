@@ -56,5 +56,17 @@ namespace LocationAPI.Tests.Tests.Integration.Controllers
             Assert.Equal("London", locationResponse.City);
         }
 
+
+        [Fact]
+        public async void Get_WithoutIPAddress_ReturnsBadResponse()
+        {
+            var client = _factory.CreateClient();
+            var response = await client.GetAsync("api/location");
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+            var responseMessage = await response.Content.ReadAsStringAsync();
+            Assert.Equal("Failed to extract IP Address from the request.", responseMessage);
+        }
     }
 }
