@@ -19,6 +19,7 @@ public class LocationController : ControllerBase
     }
 
     [HttpGet]
+    [ResponseCache(Duration = 43200, Location = ResponseCacheLocation.Client)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Location>> Get()

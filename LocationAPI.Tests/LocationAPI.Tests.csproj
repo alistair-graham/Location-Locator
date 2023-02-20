@@ -26,7 +26,6 @@
   <ItemGroup>
     <None Remove="Tests\" />
     <None Remove="Tests\Integration\" />
-    <None Remove="Tests\Unit\" />
     <None Remove="Tests\Integration\Controllers\" />
     <None Remove="Tests\Integration\Controllers\LocationControllerTests" />
     <None Remove="Microsoft.AspNetCore.Mvc.Testing" />
@@ -37,7 +36,6 @@
   <ItemGroup>
     <Folder Include="Tests\" />
     <Folder Include="Tests\Integration\" />
-    <Folder Include="Tests\Unit\" />
     <Folder Include="Tests\Integration\Controllers\" />
     <Folder Include="Tests\Integration\Helpers\" />
     <Folder Include="Tests\Integration\Services\" />

@@ -1,4 +1,4 @@
-using Location_Locator.Services.LocationService;
+﻿using Location_Locator.Services.LocationService;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,4 +38,3 @@ app.MapControllers();
 app.Run();
 
 public partial class Program { }
-
