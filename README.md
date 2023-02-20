@@ -40,5 +40,5 @@ The GET action `localhost:5071/api/location` returns your location. Here are the
 - Authentication:  Checking who is sending the request.
 - Authorisation: Checking what actions a requester is allowed to perform.
 - Rate limiting, server-side caching, CORS, status page, timing metrics + alerts, public API documentation, handling headers such as `Accept` etc.
-- Persistent storage: I didn't have enough time for that. It also doesn't make sense for what my service does but I understand that it would be more to showcase how I would approach it.
+- Persistent storage: I didn't have enough time for that unfortunately!
 - A whole lot of other things...
