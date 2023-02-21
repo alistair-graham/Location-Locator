@@ -40,5 +40,4 @@ The GET action `localhost:5071/api/location` returns your location. Here are the
 - Authentication:  Checking who is sending the request.
 - Authorisation: Checking what actions a requester is allowed to perform.
 - Rate limiting, server-side caching, CORS, status page, timing metrics + alerts, public API documentation, handling headers such as `Accept` etc.
-- Persistent storage: I didn't have enough time for that unfortunately!
-- A whole lot of other things...
+- Persistent storage: I didn't have enough time for that unfortunately! I had a time limit due to an offer I must respond to on Friday, two other coding tests and only having the evening to work on the coding tests. In terms of persistent storage, I might look at using Entity Framework with SQLite or PostgreSQL. I would add a DBContext service which would handle the database operations.
